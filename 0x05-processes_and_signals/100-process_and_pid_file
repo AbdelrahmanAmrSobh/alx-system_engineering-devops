@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # This script creates the file /var/run/myscript.pid containing its PID
-function love() {
-    rm /var/run/myscript.pid
-    exit
-}
-trap "echo I hate the kill command;love" SIGTERM
-trap "echo Y U no love me?!;love" SIGINT
-echo $$ >> /var/run/myscript.pid
-while [ true ]; do
-    echo To infinity and beyond;
+FILE=/var/run/myscript.pid
+trap 'echo "I hate the kill command" && rm $FILE; exit' SIGTERM
+trap 'echo "Y U no love me?!" && rm $FILE; exit' SIGINT
+trap 'rm $FILE; exit' SIGQUIT
+echo $$ > "$FILE"
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
 done
