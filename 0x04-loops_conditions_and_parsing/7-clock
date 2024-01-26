@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# clock
+min=1
+hour=0
+echo "Hour: $hour"
+while [ $hour -le 12 ]
+do
+	if [ $min -eq 60 ]; then
+		hour=$((hour+1))
+		if [ $hour -eq 13 ]; then
+			break
+		fi
+		echo "Hour: $hour"
+	min=1
+	fi
+	echo $min
+	min=$((min+1))
+done

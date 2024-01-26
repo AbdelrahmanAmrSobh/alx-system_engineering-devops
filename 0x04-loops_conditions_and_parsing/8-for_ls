@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# like ls but custom
+for file in *
+do
+	echo "$file" | cut -d"-" -f2-
+done

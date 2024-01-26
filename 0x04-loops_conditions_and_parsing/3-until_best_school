@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# same as last two but this time with until
+i=10
+until [ $i -lt 1 ]
+do
+	echo "Best School"
+	((i--))
+done
