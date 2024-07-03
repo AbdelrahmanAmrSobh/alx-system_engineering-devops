@@ -1,10 +1,11 @@
-# puppet ssh configuration
-exec { 'ensure no password is required':
-  command => 'echo "PasswordAuthentication no" >> /etc/ssh/ssh_config',
-  unless  => 'grep -q "PasswordAuthentication no" /etc/ssh/ssh_config'
+# ensure usage of private key and no password is required
+
+file_line { 'ensure usage of private key':
+  path    => '/etc/ssh/ssh_config',
+  line    => 'IdentityFile ~/.ssh/school',
 }
 
-exec { 'ensure to use private key school':
-  command => 'echo "IdentityFile ~/.ssh/school" >> /etc/ssh/ssh_config',
-  unless  => 'grep -q "IdentityFile ~/.ssh/school" /etc/ssh/ssh_config'
+file_line { 'ensure no password is required':
+  path    => '/etc/ssh/ssh_config',
+  line    => 'PasswordAuthentication no',
 }
