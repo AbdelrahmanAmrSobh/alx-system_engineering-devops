@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# download nginx and do everything again but add header
+apt-get update -y
+apt-get install nginx -y
+
+HostName=$(hostname)
+header="\\\n\tadd_header X-Served-By $HostName;\n"
+found=$(grep "X-Server-by" /etc/nginx/sites-available/default)
+if [[ -z $found ]]; then
+	sed -i "23i $header" /etc/nginx/sites-available/default
+fi
+
+echo "Hello World!" > /var/www/html/index.html
+
+found=$(grep "redirect_me" /etc/nginx/sites-available/default)
+STRING="\\\n\tlocation /redirect_me {\n\t\t return 301 https://www.youtube.com/watch?v=3MbaGJN2ioQ;\n\t}\n"
+if [[ -z $found ]]; then
+    sed -i "42i $STRING" /etc/nginx/sites-available/default
+fi
+
+found=$(grep "error_page 404" /etc/nginx/sites-available/default)
+error="\\\n\terror_page 404 /custom_404.html;\n"
+if [[ -z $found ]]; then
+    echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+    sed -i "40i $error" /etc/nginx/sites-available/default
+fi
+
+service nginx restart
