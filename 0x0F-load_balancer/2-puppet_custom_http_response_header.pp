@@ -1,13 +1,11 @@
 # Custom HTTP header in a nginx server
 exec { 'update server':
-  command  => 'apt-get update',
-  user     => 'root',
+  command  => 'sudo apt-get update',
   provider => 'shell',
 }
 ->
 package { 'download nginx':
-  ensure   => present,
-  provider => 'apt'
+  ensure   => 'present',
 }
 ->
 file_line { 'add HTTP header':
@@ -17,8 +15,7 @@ file_line { 'add HTTP header':
   line   => 'add_header X-Served-By $hostname;'
 }
 ->
-service { 'start nginx':
-  ensure  => 'running',
-  enable  => true,
-  require => Package['nginx']
+exec { 'restart'
+  command  => 'sudo service nginx restart',
+  provider => 'shell',
 }
