@@ -3,6 +3,7 @@
 Script that is used to get data from api
 and display this data
 """
+import json
 import requests
 
 if __name__ == "__main__":
@@ -22,4 +23,4 @@ if __name__ == "__main__":
                     "completed": task.get('completed')
                 }))
             employees_dict.update({id: tasks_formatted})
-        file.write(employees_dict.__str__())
+        json.dump(employees_dict, file)
