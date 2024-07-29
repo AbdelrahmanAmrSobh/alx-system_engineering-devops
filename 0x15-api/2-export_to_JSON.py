@@ -3,6 +3,7 @@
 Script that is used to get data from api
 and display this data
 """
+import json
 import requests
 import sys
 
@@ -21,4 +22,4 @@ if __name__ == "__main__":
                 "completed": task.get('completed'),
                 "username": employee.get('name')
             }))
-        file.write(f'{{"{id}": {tasks_formatted}}}')
+        json.dump({id: tasks_formatted}, file)
