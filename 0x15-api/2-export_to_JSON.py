@@ -18,8 +18,8 @@ if __name__ == "__main__":
         tasks_formatted = []
         for task in tasks:
             tasks_formatted.append(dict({
+                "username": employee.get('username'),
                 "task": task.get('title'),
-                "completed": task.get('completed'),
-                "username": employee.get('name')
+                "completed": task.get('completed')
             }))
         json.dump({id: tasks_formatted}, file)
