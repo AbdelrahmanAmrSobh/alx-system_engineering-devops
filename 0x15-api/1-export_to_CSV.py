@@ -13,7 +13,7 @@ if __name__ == "__main__":
     keys = ['id', 'userId']
     with open(f'{id}.csv', 'w') as file:
         employee = requests.get(urls[0], params={keys[0]: id}).json()[0]
-        employee = employee.get('name')
+        employee = employee.get('username')
         tasks = requests.get(urls[1], params={keys[1]: id}).json()
         for task in tasks:
             task_status = task.get('completed')
