@@ -15,6 +15,6 @@ if __name__ == "__main__":
     tasks = requests.get(urls[1], params={keys[1]: id}).json()
     completed_tasks = [task for task in tasks if task.get('completed') is True]
     print(f'Employee {employee} is done with tasks', end='')
-    print(f'{len(completed_tasks)}/{len(tasks)}):')
+    print(f'({len(completed_tasks)}/{len(tasks)}):')
     for completed_task in completed_tasks:
         print(f'\t {completed_task.get('title')}')
