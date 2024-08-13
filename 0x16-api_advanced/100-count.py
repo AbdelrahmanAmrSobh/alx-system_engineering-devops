@@ -22,7 +22,8 @@ def recurse(subreddit, hot_list=[]):
 def count_words(subreddit, word_list, counts={}, titles=[]):
     """َQueries the reddit api and print title of top ten hot posts"""
     if len(word_list) == 0 and len(counts) > 0:
-        sorted_counts = dict(sorted(counts.items(), key=operator.itemgetter(1), reverse=True))
+        sorted_counts = dict(sorted(counts.items(), key=operator.itemgetter(1),
+                                    reverse=True))
         for key, value in sorted_counts.items():
             print(f"{key}: {value}")
     if len(titles) == 0:
