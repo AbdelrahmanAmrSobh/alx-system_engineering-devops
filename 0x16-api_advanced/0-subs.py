@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-Script that is used to get data from api
-and display this data
-"""
+"""Script that is used to get data from api."""
 import requests
 
 
