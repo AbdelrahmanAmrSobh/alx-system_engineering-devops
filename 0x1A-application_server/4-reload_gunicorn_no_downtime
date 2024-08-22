@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 # restart gracefully gunicorn
+sudo killall datadog-agent
 pkill -HUP gunicorn
